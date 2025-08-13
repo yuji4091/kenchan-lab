@@ -110,3 +110,6 @@
 /home/runner/work/yuji4091/yuji4091/RfidKartTracker.Tests/obj/Debug/net8.0/RfidKartTracker.Tests.pdb
 /home/runner/work/yuji4091/yuji4091/RfidKartTracker.Tests/obj/Debug/net8.0/RfidKartTracker.Tests.genruntimeconfig.cache
 /home/runner/work/yuji4091/yuji4091/RfidKartTracker.Tests/obj/Debug/net8.0/ref/RfidKartTracker.Tests.dll
+C:\Users\kench\Documents\GitHub\yuji4091\RfidKartTracker.Tests\obj\Debug\net8.0\RfidKartTracker.Tests.dll
+C:\Users\kench\Documents\GitHub\yuji4091\RfidKartTracker.Tests\obj\Debug\net8.0\refint\RfidKartTracker.Tests.dll
+C:\Users\kench\Documents\GitHub\yuji4091\RfidKartTracker.Tests\obj\Debug\net8.0\RfidKartTracker.Tests.pdb

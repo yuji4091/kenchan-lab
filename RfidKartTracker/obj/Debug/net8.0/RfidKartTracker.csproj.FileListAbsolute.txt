@@ -23,3 +23,6 @@
 /home/runner/work/yuji4091/yuji4091/RfidKartTracker/obj/Debug/net8.0/RfidKartTracker.pdb
 /home/runner/work/yuji4091/yuji4091/RfidKartTracker/obj/Debug/net8.0/RfidKartTracker.genruntimeconfig.cache
 /home/runner/work/yuji4091/yuji4091/RfidKartTracker/obj/Debug/net8.0/ref/RfidKartTracker.dll
+C:\Users\kench\Documents\GitHub\yuji4091\RfidKartTracker\obj\Debug\net8.0\RfidKartTracker.dll
+C:\Users\kench\Documents\GitHub\yuji4091\RfidKartTracker\obj\Debug\net8.0\refint\RfidKartTracker.dll
+C:\Users\kench\Documents\GitHub\yuji4091\RfidKartTracker\obj\Debug\net8.0\RfidKartTracker.pdb

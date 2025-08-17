@@ -10,6 +10,10 @@ namespace RfidKartTracker
         private static KartTrackingApplication? _application;
         private static readonly CancellationTokenSource _cancellationTokenSource = new();
 
+        /// <summary>
+        /// 主程序入口点 - Main执行流程的起始点
+        /// Main program entry point - Starting point of Main execution flow
+        /// </summary>
         static async Task Main(string[] args)
         {
             Console.WriteLine("🏎️  RFID 卡丁车跟踪系统");
@@ -17,23 +21,30 @@ namespace RfidKartTracker
             Console.WriteLine("==============================");
             Console.WriteLine();
 
-            // 设置控制台取消处理
+            // 设置控制台取消处理 - Main线程的信号处理机制
+            // Setup console cancellation handling - Signal handling mechanism for Main thread
             Console.CancelKeyPress += OnCancelKeyPress;
 
             try
             {
+                // Main: 初始化核心应用程序实例
+                // Main: Initialize core application instance
                 _application = new KartTrackingApplication();
                 
-                // 显示操作说明
+                // Main: 显示操作说明
+                // Main: Display operation instructions
                 DisplayInstructions();
 
-                // 启动应用程序（这会开始自动扫描）
+                // Branch 1: 启动RFID扫描分支（后台持续扫描任务）
+                // Branch 1: Start RFID scanning branch (background continuous scanning task)
                 var scanningTask = _application.StartAsync();
 
-                // 等待用户输入命令
+                // Branch 2: 启动用户输入处理分支（交互命令处理任务）
+                // Branch 2: Start user input processing branch (interactive command handling task)
                 var inputTask = ProcessUserInputAsync(_cancellationTokenSource.Token);
 
-                // 等待任一任务完成
+                // Main: 并发协调 - 等待任一分支完成即继续执行
+                // Main: Concurrency coordination - wait for any branch to complete
                 await Task.WhenAny(scanningTask, inputTask);
             }
             catch (OperationCanceledException)
@@ -73,11 +84,13 @@ namespace RfidKartTracker
         }
 
         /// <summary>
-        /// 处理用户输入
-        /// Process user input
+        /// Branch 2: 用户输入处理分支 - 处理交互命令的并发分支
+        /// Branch 2: User input processing branch - Concurrent branch for handling interactive commands
         /// </summary>
         private static async Task ProcessUserInputAsync(CancellationToken cancellationToken)
         {
+            // Branch 2: EPC标签到命令的映射配置
+            // Branch 2: EPC tag to command mapping configuration
             var epcMappings = new Dictionary<string, string>
             {
                 ["s1"] = "E20000166021011740209049", // Kart 001
@@ -87,6 +100,8 @@ namespace RfidKartTracker
                 ["s5"] = "E20000166021011740209053"  // Kart 005
             };
 
+            // Branch 2: 持续监听用户输入的主循环
+            // Branch 2: Main loop for continuously listening to user input
             while (!cancellationToken.IsCancellationRequested)
             {
                 try
@@ -99,29 +114,40 @@ namespace RfidKartTracker
                         
                     input = input.Trim().ToLower();
 
+                    // Branch 2: 命令分支决策树 - 根据用户输入选择执行路径
+                    // Branch 2: Command branch decision tree - Choose execution path based on user input
                     switch (input)
                     {
                         case "quit":
                         case "q":
                         case "exit":
+                            // Branch 2 → Main: 触发主程序退出
+                            // Branch 2 → Main: Trigger main program exit
                             _cancellationTokenSource.Cancel();
                             return;
 
                         case "reset":
+                            // Branch 2 → Application: 重置统计分支
+                            // Branch 2 → Application: Reset statistics branch
                             _application?.ResetStats();
                             break;
 
                         case var cmd when epcMappings.ContainsKey(cmd):
+                            // Branch 2 → Scanning: 模拟扫描分支
+                            // Branch 2 → Scanning: Simulate scanning branch
                             var epcTag = epcMappings[cmd];
                             Console.WriteLine($"🎯 模拟扫描标签: {epcTag}");
                             _application?.SimulateScan(epcTag);
                             break;
 
                         case "":
-                            // 空输入，忽略
+                            // Branch 2: 空输入处理分支
+                            // Branch 2: Empty input handling branch
                             break;
 
                         default:
+                            // Branch 2: 未知命令处理分支
+                            // Branch 2: Unknown command handling branch
                             Console.WriteLine("❓ 未知命令，请重试");
                             break;
                     }

@@ -27,26 +27,29 @@ namespace RfidKartTracker
         }
 
         /// <summary>
-        /// 设置事件处理器
-        /// Setup event handlers
+        /// 事件驱动架构: 设置各分支间的事件处理器
+        /// Event-driven architecture: Setup event handlers between branches
         /// </summary>
         private void SetupEventHandlers()
         {
-            // RFID 扫描事件处理
+            // Branch 1 → Event Branch: RFID 扫描事件分支连接
+            // Branch 1 → Event Branch: RFID scan event branch connection
             _scannerService.TagScanned += OnTagScanned;
             _scannerService.ScannerStatusChanged += OnScannerStatusChanged;
 
-            // 圈数统计事件处理
+            // Event Branch → Event Branch: 圈数统计事件分支连接
+            // Event Branch → Event Branch: Lap counting event branch connection
             _lapCounterService.LapCounted += OnLapCounted;
             _lapCounterService.UnknownTagScanned += OnUnknownTagScanned;
 
-            // 防重复过滤事件处理
+            // Event Branch: 防重复过滤事件分支连接
+            // Event Branch: Anti-duplicate filtering event branch connection
             _debounceFilter.TagIgnored += OnTagIgnored;
         }
 
         /// <summary>
-        /// 启动应用程序
-        /// Start the application
+        /// Main → Branch 1: 启动应用程序和扫描分支
+        /// Main → Branch 1: Start application and scanning branch
         /// </summary>
         public async Task StartAsync()
         {
@@ -60,6 +63,8 @@ namespace RfidKartTracker
             Console.WriteLine("📡 开始 RFID 扫描...");
             Console.WriteLine("📡 Starting RFID scanning...");
             
+            // Branch 1: 启动持续扫描分支 - 独立线程中的后台任务
+            // Branch 1: Start continuous scanning branch - Background task in separate thread
             await _scannerService.StartScanningAsync();
         }
 

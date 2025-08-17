@@ -44,8 +44,8 @@ namespace RfidKartTracker.Services
         }
 
         /// <summary>
-        /// 开始扫描
-        /// Start scanning
+        /// Branch 1: 启动RFID扫描分支 - 后台持续扫描任务
+        /// Branch 1: Start RFID scanning branch - Background continuous scanning task
         /// </summary>
         public async Task StartScanningAsync()
         {
@@ -60,11 +60,14 @@ namespace RfidKartTracker.Services
 
             try
             {
+                // Branch 1: 进入持续扫描循环分支
+                // Branch 1: Enter continuous scanning loop branch
                 await ScanContinuouslyAsync(_scanningCancellation.Token);
             }
             catch (OperationCanceledException)
             {
-                // Expected when cancellation is requested
+                // Branch 1: 分支取消时的预期异常处理
+                // Branch 1: Expected exception handling when branch is cancelled
             }
             finally
             {
@@ -83,18 +86,22 @@ namespace RfidKartTracker.Services
         }
 
         /// <summary>
-        /// 连续扫描逻辑
-        /// Continuous scanning logic
+        /// Branch 1: 持续扫描分支的核心循环逻辑
+        /// Branch 1: Core loop logic of continuous scanning branch
         /// </summary>
         private async Task ScanContinuouslyAsync(CancellationToken cancellationToken)
         {
+            // Branch 1: 扫描分支的主循环 - 响应取消令牌
+            // Branch 1: Main loop of scanning branch - Responds to cancellation token
             while (!cancellationToken.IsCancellationRequested)
             {
-                // 模拟随机扫描间隔（1-5秒）
+                // Branch 1: 随机扫描间隔分支 - 模拟真实RFID扫描环境
+                // Branch 1: Random scan interval branch - Simulate real RFID scanning environment
                 var scanInterval = _random.Next(1000, 5000);
                 await Task.Delay(scanInterval, cancellationToken);
 
-                // 随机选择一个标签进行扫描
+                // Branch 1: 标签选择和扫描分支
+                // Branch 1: Tag selection and scanning branch
                 if (_availableTags.Count > 0)
                 {
                     var tagIndex = _random.Next(_availableTags.Count);
@@ -102,6 +109,9 @@ namespace RfidKartTracker.Services
                     var signalStrength = _random.Next(30, 100); // 模拟信号强度
 
                     var scanEvent = new RfidScanEvent(selectedTag, signalStrength);
+                    
+                    // Branch 1 → Event Branch: 触发扫描事件分支
+                    // Branch 1 → Event Branch: Trigger scan event branch
                     TagScanned?.Invoke(scanEvent);
                 }
             }

@@ -20,9 +20,7 @@
 
 ### 📈 What I'm Working On
 
-- Personal portfolio site with Next.js  
-- Open-source contributions to accessibility tools  
-- Learning Rust for systems programming  
+- **Open-source contributions to accessibility tools**  
 - **C#**: RFID 计圈系统开发  
 - **Python**: 加密货币交易 Trading Bot 开发  
 

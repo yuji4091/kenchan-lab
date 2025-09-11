@@ -1,4 +1,4 @@
-# 🚀 KenChan Lab | FineTurtle 🐢
+# 🚀 K E N | FineTurtle 🐢
 ![Repo](https://img.shields.io/badge/Repo-kenchan--lab-blue?style=flat-square)
 ![Language](https://img.shields.io/badge/Language-C%23-purple?style=flat-square)
 ![Commits](https://img.shields.io/badge/Commits-9-orange?style=flat-square)

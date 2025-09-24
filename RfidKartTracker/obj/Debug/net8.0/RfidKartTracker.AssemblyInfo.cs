@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RfidKartTracker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c32573ee1c7d4f2b7fb0517b37dd073f5d5dadd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d32b4dc1b5865768cf291198d4982433d7042919")]
 [assembly: System.Reflection.AssemblyProductAttribute("RfidKartTracker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RfidKartTracker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
